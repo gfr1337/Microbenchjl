@@ -1,0 +1,7 @@
+name = "Microbench"
+uuid = "34118dc6-ddd5-4bbb-8282-431a20b0ed30"
+authors = ["George Rogers <george.f.rogers@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
