@@ -5,7 +5,7 @@ using Printf
 function pigen(s, e)
     res = zero(Float64)
     for i = s:e
-        t = Float64(i)
+        t = Int128(i)
         res += 1/(t*t)
     end
     sqrt(6.0res)
