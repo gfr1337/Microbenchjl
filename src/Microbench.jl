@@ -3,33 +3,34 @@ module Microbench
 using Base.Iterators
 using Printf
 
-struct Program
+struct PiTerm
     e::Float64
 end
 
-function value(p::Program)
+function piterm(p::PiTerm)
     inv(p.e*p.e)
 end
 
-value(ps) = sqrt(6.0mapreduce(value, +, ps, init=0.0))
+piterms(n) = (PiTerm(i) for i = 1:n)
+
+pisum(ps) = sqrt(6.0mapreduce(piterm, +, ps))
+
+pisum(n::Integer) = piterms(n) |> pisum
 
 function run(p)
-    @printf("%40.37f\n", value(p))
+    @printf("%40.37f\n", pisum(p))
 end
 
 function main(args)
     e = parse(Int, args[2])
     n = parse(Int, args[1])
-    for j = 1:n
-        @timev begin
-            programs = (Program(i) for i = 1:e)
-            run(programs)
-        end
+    for i = 1:n
+        run(e)
     end
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__()
-    main(ARGS[:])
+    @time main(ARGS[:])
 end
 
 end # module Microbench
