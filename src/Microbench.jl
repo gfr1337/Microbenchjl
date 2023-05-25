@@ -3,7 +3,7 @@ module Microbench
 using Base.Iterators
 using Printf
 
-struct PiTerm
+mutable struct PiTerm
     e::Float64
 end
 
@@ -11,9 +11,15 @@ function piterm(p::PiTerm)
     inv(p.e*p.e)
 end
 
-piterms(n) = (PiTerm(i) for i = 1:n)
+function piterms(n::Int64)
+    res = Vector{PiTerm}(undef, n)
+    for i = 1:n
+        res[i] = PiTerm(i)
+    end
+    res
+end
 
-pisum(ps) = sqrt(6.0mapreduce(piterm, +, ps))
+pisum(ps) = sqrt(6.0mapreduce(piterm, +, ps, init=0.0))
 
 pisum(n::Integer) = piterms(n) |> pisum
 
