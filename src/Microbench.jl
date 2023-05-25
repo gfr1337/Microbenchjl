@@ -21,16 +21,16 @@ function run(p)
     @printf("%40.37f\n", pisum(p))
 end
 
-function main(args)
-    e = parse(Int, args[2])
-    n = parse(Int, args[1])
-    for i = 1:n
-        run(e)
+function main(n, e)
+    let n = parse(Int, n), e = parse(Int, e)
+        for i = 1:n
+            run(e)
+        end
     end
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__()
-    @time main(ARGS[:])
+    @time main(ARGS...)
 end
 
 end # module Microbench
