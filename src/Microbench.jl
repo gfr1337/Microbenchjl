@@ -3,8 +3,7 @@ module Microbench
 using Base.Iterators
 using Printf
 
-abstract type Term{I}
-end
+abstract type Term{I} end
 
 input(p::Term) = p.input
 
