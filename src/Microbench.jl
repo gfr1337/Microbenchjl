@@ -1,5 +1,7 @@
 #!/usr/bin/env -S julia --startup-file=no --project=@
 module Microbench
+using SimpleTraits
+using Printf
 using Base.Iterators
 
 include("terms.jl")
@@ -7,11 +9,17 @@ include("piterm.jl")
 
 using .Terms, .PiTerms
 
-struct Program <: Term{Int, Float64}
+struct Program
     input::Int
 end
+@traitimpl Term{Program}
 
+Terms.inputtype(::Type{Program}) = Int
+Terms.valuetype(::Type{Program}) = Float64
+Terms.input(p::Program) = p.input
 Terms.value(p::Program) = input(p) |> pisum
+
+Base.print(out::IO, p::Program) = @printf(out, "%40.37f", value(p))
 
 function main(n, e)
     let n = parse(Int, n), e = parse(Int, e)

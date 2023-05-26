@@ -1,14 +1,13 @@
 module Terms
+using SimpleTraits
 using Printf
-export Term, input, value, run
+export Term, inputtype, input, valuetype, value, run
 
-abstract type Term{I, O} end
+@traitdef Term{T}
 
-input(p::Term) = p.input
-
-value(p::Term{I, I}) where I = p.input
-
-Base.print(out::IO, p::Term) = print(out, value(p))
-Base.print(out::IO, p::Term{I, O}) where {I, O <: AbstractFloat} = @printf(out, "%40.37f", value(p))
+@traitfn inputtype(p::T) where {T; Term{T}} = inputtype(T)
+@traitfn valuetype(p::T) where {T; Term{T}} = valuetype(T)
+function input end
+function value end
 
 end
