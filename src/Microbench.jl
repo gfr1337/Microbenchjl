@@ -17,11 +17,11 @@ end
 
 value(p::PiTerm) = inv(input(p) * input(p))
 
-piterms(n) = (PiTerm(i) for i = 1:n)
+piterms() = (PiTerm(i) for i = Iterators.countfrom(1))
 
-pisum²(n) = 6.0*mapreduce(value, +, piterms(n), init=0.0)
+pisumsq(n) = 6.0*mapreduce(value, +, Iterators.take(piterms(), n), init=0.0)
 
-pisum(n) = pisum²(n) |> sqrt
+pisum(n) = pisumsq(n) |> sqrt
 
 struct Program <: Term{Int, Float64}
     input::Int
