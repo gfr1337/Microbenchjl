@@ -8,5 +8,7 @@ input(p::Term) = p.input
 
 value(p::Term{I, I}) where I = p.input
 
-run(p::Term{I, O}) where {I, O <: AbstractFloat} = @printf("%40.37f\n", value(p))
+Base.print(out::IO, p::Term) = print(out, value(p))
+Base.print(out::IO, p::Term{I, O}) where {I, O <: AbstractFloat} = @printf(out, "%40.37f", value(p))
+
 end

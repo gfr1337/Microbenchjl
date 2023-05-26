@@ -20,7 +20,7 @@ function main(n, e)
             programs[i] = Program(e)
         end
         for p = programs
-            run(p)
+            println(p)
         end
     end
 end
