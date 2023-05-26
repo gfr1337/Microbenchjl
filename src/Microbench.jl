@@ -13,8 +13,8 @@ using .Terms, .PiTerms
 struct Program
     input::Int
 end
-@traitimpl Term{Program}
 
+@traitimpl Term{Program}
 Terms.inputtype(::Type{Program}) = Int
 Terms.valuetype(::Type{Program}) = Float64
 Terms.value(p::Program) = input(p) |> pisum
@@ -23,12 +23,8 @@ Base.print(out::IO, p::Program) = @printf(out, "%40.37f", value(p))
 
 function main(n, e)
     let n = parse(Int, n), e = parse(Int, e)
-        programs = Vector{Program}(undef, n)
         for i = 1:n
-            programs[i] = Program(e)
-        end
-        for p = programs
-            println(p)
+            println(Program(e))
         end
     end
 end
