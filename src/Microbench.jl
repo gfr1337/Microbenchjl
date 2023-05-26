@@ -1,5 +1,6 @@
 #!/usr/bin/env -S julia --startup-file=no --project=@
 module Microbench
+export Term, inputtype, input, valuetype, value, PiTerm, piterms, pisum, pisumsq
 using SimpleTraits
 using Printf
 using Base.Iterators
