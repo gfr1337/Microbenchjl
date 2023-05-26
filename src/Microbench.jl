@@ -3,7 +3,7 @@ module Microbench
 using Base.Iterators
 using Printf
 
-abstract type Term{I}
+abstract type Term
 end
 
 input(p::Term) = p.input
@@ -12,14 +12,13 @@ value(p::Term) = p.input
 
 run(p::Term) = @printf("%40.37f\n", value(p))
 
-struct PiTerm <: Term{Float64}
+struct PiTerm <: Term
     input::Float64
 end
 
 input(p::PiTerm) = p.input
 
 value(p::PiTerm) = inv(input(p) * input(p))
-
 
 function piterms(n::Int64)
     res = Vector{PiTerm}(undef, n)
@@ -35,7 +34,7 @@ pisum²(n::Integer) = piterms(n) |> pisum²
 
 pisum(n) = pisum²(n) |> sqrt
 
-struct Program <: Term{Int}
+struct Program <: Term
     input::Int
 end
 
