@@ -16,8 +16,6 @@ struct PiTerm <: Term{Float64}
     input::Float64
 end
 
-input(p::PiTerm) = p.input
-
 value(p::PiTerm) = inv(input(p) * input(p))
 
 function piterms(n::Int64)
@@ -37,8 +35,6 @@ pisum(n) = pisum²(n) |> sqrt
 struct Program <: Term{Int}
     input::Int
 end
-
-input(p::Program) = p.input
 
 value(p::Program) = input(p) |> pisum
 
