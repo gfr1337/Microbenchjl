@@ -25,9 +25,7 @@ function piterms(n::Int64)
     res
 end
 
-pisum²(ps) = 6.0mapreduce(value, +, ps, init=0.0)
-
-pisum²(n::Integer) = piterms(n) |> pisum²
+pisum²(n) = 6.0*mapreduce(value, +, piterms(n), init=0.0)
 
 pisum(n) = pisum²(n) |> sqrt
 
