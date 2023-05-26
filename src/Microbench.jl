@@ -1,33 +1,17 @@
 #!/usr/bin/env -S julia --startup-file=no --project=@
 module Microbench
 using Base.Iterators
-using Printf
 
-abstract type Term{I, O} end
+include("terms.jl")
+include("piterm.jl")
 
-input(p::Term) = p.input
-
-value(p::Term{I, I}) where I = p.input
-
-run(p::Term{I, O}) where {I, O <: AbstractFloat} = @printf("%40.37f\n", value(p))
-
-struct PiTerm <: Term{Float64, Float64}
-    input::Float64
-end
-
-value(p::PiTerm) = inv(input(p) * input(p))
-
-piterms() = (PiTerm(i) for i = Iterators.countfrom(1))
-
-pisumsq(n) = 6.0*mapreduce(value, +, Iterators.take(piterms(), n), init=0.0)
-
-pisum(n) = pisumsq(n) |> sqrt
+using .Terms, .PiTerms
 
 struct Program <: Term{Int, Float64}
     input::Int
 end
 
-value(p::Program) = input(p) |> pisum
+Terms.value(p::Program) = input(p) |> pisum
 
 function main(n, e)
     let n = parse(Int, n), e = parse(Int, e)
