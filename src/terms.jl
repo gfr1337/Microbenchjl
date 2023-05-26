@@ -1,7 +1,6 @@
 module Terms
 using SimpleTraits
-using Printf
-export Term, inputtype, input, valuetype, value, run
+export Term, inputtype, input, valuetype, value
 
 @traitdef Term{T}
 
