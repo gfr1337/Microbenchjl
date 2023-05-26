@@ -3,33 +3,27 @@ module Microbench
 using Base.Iterators
 using Printf
 
-abstract type Term{I} end
+abstract type Term{I, O} end
 
 input(p::Term) = p.input
 
-value(p::Term) = p.input
+value(p::Term{I, I}) where I = p.input
 
-run(p::Term) = @printf("%40.37f\n", value(p))
+run(p::Term{I, O}) where {I, O <: AbstractFloat} = @printf("%40.37f\n", value(p))
 
-struct PiTerm <: Term{Float64}
+struct PiTerm <: Term{Float64, Float64}
     input::Float64
 end
 
 value(p::PiTerm) = inv(input(p) * input(p))
 
-function piterms(n::Int64)
-    res = Vector{PiTerm}(undef, n)
-    for i = 1:n
-        res[i] = PiTerm(i)
-    end
-    res
-end
+piterms(n) = (PiTerm(i) for i = 1:n)
 
 pisum²(n) = 6.0*mapreduce(value, +, piterms(n), init=0.0)
 
 pisum(n) = pisum²(n) |> sqrt
 
-struct Program <: Term{Int}
+struct Program <: Term{Int, Float64}
     input::Int
 end
 
