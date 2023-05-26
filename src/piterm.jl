@@ -7,7 +7,6 @@ using ..Terms
 struct PiTerm
     input::Float64
 end
-
 piterms() = (PiTerm(i) for i = Iterators.countfrom(1))
 
 @traitimpl Term{PiTerm}
