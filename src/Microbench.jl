@@ -9,7 +9,7 @@ include("piterm.jl")
 
 using .Terms, .PiTerms
 
-function main(args::String...)
+function main(args)
     n = parse(Int, args[1])
     e = parse(Int, args[2])
     for _ = 1:n
@@ -18,7 +18,7 @@ function main(args::String...)
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__()
-    main(ARGS...)
+    main(ARGS[:])
 end
 
 end # module Microbench
