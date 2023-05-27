@@ -6,7 +6,7 @@ using SimpleTraits
 
 function computepi²(ts)
     s = 0.0
-    @simd for i = ts
+    @fastmath for i = ts
         t = inv(i)
         s += t*t
     end
