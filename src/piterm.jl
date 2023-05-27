@@ -12,11 +12,11 @@ end
 @traitimpl Term{PiTerm}
 Terms.inputtype(::Type{PiTerm}) = Int
 Terms.valuetype(::Type{PiTerm}) = Float64
-Terms.value(p::PiTerm) = inv(input(p)*input(p))
+Terms.value(p::PiTerm) = input(p)^-2
 
-function pisumsq(n) 
+@fastmath function pisumsq(n) 
     s = 0.0
-    @simd for t = 1:n
+    for t = 1:n
         s += value(PiTerm(t))
     end
     6.0*s
@@ -33,6 +33,9 @@ Terms.inputtype(::Type{Program}) = Int
 Terms.valuetype(::Type{Program}) = Float64
 Terms.value(p::Program) = input(p) |> pisum
 
-Base.print(out::IO, p::Program) = @printf(out, "%40.37f", value(p))
+function Base.print(out::IO, p::Program) 
+    v = value(p)
+    @printf(out, "%11.8f\t%s", v, v ≈ π)
+end
 
 end
