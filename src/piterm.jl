@@ -1,36 +1,20 @@
 module PiTerms
-export PiTerm, pisumsq, pisum
+export PiTerm, pisum, pisumsq, Program
 using Base.Threads
 using Printf
 using SimpleTraits
-using ..Terms
 
-struct PiTerm
-    input::Int
+@fastmath function invsq(i)
+    t = 1/i
+    t*t
 end
-
-@traitimpl Term{PiTerm}
-Terms.inputtype(::Type{PiTerm}) = Int
-Terms.valuetype(::Type{PiTerm}) = Float64
-Terms.value(p::PiTerm) = input(p) ^ -2
-
-function pisumsq(ts)
+@fastmath function pisumsq(ts)
     s = 0.0
-    @simd for t = ts
-        s += value(PiTerm(t))
+    for t = ts
+        s += invsq(t)
     end
     6.0*s
 end
-
-pisum(ts) = pisumsq(ts) |> sqrt
-
-struct Program
-    input::Int
-end
-
-@traitimpl Term{Program}
-Terms.inputtype(::Type{Program}) = Int
-Terms.valuetype(::Type{Program}) = Float64
-Terms.value(p::Program) = 1:input(p) |> pisum
+pisum(ts) = sqrt(pisumsq(ts))
 
 end
