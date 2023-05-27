@@ -10,6 +10,7 @@ include("piterm.jl")
 using .PiTerms
 
 function main(n, e)
+    println("Julia")
     for i = 1:n
         benchmark(100, e)
     end
