@@ -1,5 +1,6 @@
 module PiTerms
 export PiTerm, piterms, pisumsq, pisum
+using Base.Threads
 using Printf
 using SimpleTraits
 using ..Terms
@@ -14,10 +15,11 @@ Terms.valuetype(::Type{PiTerm}) = Float64
 Terms.value(p::PiTerm) = inv(input(p)*input(p))
 
 function pisumsq(n) 
-    s = 0.0
-    @simd for t = 1:n
-        s += value(PiTerm(t))
+    ss = zeros(nthreads())
+    @threads for t = 1:n
+        ss[threadid()] += value(PiTerm(t))
     end
+    s = sum(ss)
     6.0*s
 end
 
