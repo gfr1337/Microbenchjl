@@ -6,8 +6,9 @@ using SimpleTraits
 
 function computepi²(ts)
     s = 0.0
-    @simd for t = ts
-        s += t^-2
+    @simd for i = ts
+        t = inv(i)
+        s += t*t
     end
     6.0*s
 end
