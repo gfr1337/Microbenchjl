@@ -22,7 +22,7 @@ Terms.value(p::PiTerm) = input(p) ^ -2
     6.0*s
 end
 
-@fastmath pisum(ts) = pisumsq(ts) |> sqrt
+pisum(ts) = pisumsq(ts) |> sqrt
 
 struct Program
     input::Int
