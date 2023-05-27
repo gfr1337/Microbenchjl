@@ -14,15 +14,15 @@ Terms.inputtype(::Type{PiTerm}) = Int
 Terms.valuetype(::Type{PiTerm}) = Float64
 Terms.value(p::PiTerm) = input(p)^-2
 
-@fastmath function pisumsq(n::Int)
+@fastmath function pisumsq(ts)
     s = 0.0
-    for t = 1:n
+    for t = ts
         s += value(PiTerm(t))
     end
     6.0*s
 end
 
-@fastmath pisum(n) = pisumsq(n) |> sqrt
+@fastmath pisum(ts) = pisumsq(n) |> sqrt
 
 struct Program
     input::Int
@@ -31,7 +31,7 @@ end
 @traitimpl Term{Program}
 Terms.inputtype(::Type{Program}) = Int
 Terms.valuetype(::Type{Program}) = Float64
-Terms.value(p::Program) = input(p) |> pisum
+Terms.value(p::Program) = 1:input(p) |> pisum
 
 function Base.print(out::IO, p::Program) 
     v = value(p)
