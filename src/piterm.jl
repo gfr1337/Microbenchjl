@@ -1,16 +1,15 @@
 module PiTerms
-export computepi, computepi², Program
+export computepi, computepi²
 using Base.Threads
 using Printf
 
 function computepi²(e)::Float64
     s = 0.0
     @fastmath for i = 1:e
-        t = inv(i)
-        s += t*t
+        s += i ^ -2
     end
     6.0*s
 end
-computepi(ts) = sqrt(computepi²(ts))
+@fastmath computepi(ts)::Float64 = sqrt(computepi²(ts))
 
 end
