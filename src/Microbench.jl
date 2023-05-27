@@ -21,11 +21,11 @@ Terms.value(p::Program) = input(p) |> pisum
 
 Base.print(out::IO, p::Program) = @printf(out, "%40.37f", value(p))
 
-function main(n, e)
-    let n = parse(Int, n), e = parse(Int, e)
-        for i = 1:n
-            println(Program(e))
-        end
+function main(args::String...)
+    n = parse(Int, args[1])
+    e = parse(Int, args[2])
+    for _ = 1:n
+        println(Program(e))
     end
 end
 
