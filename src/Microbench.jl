@@ -1,6 +1,6 @@
 #!/usr/bin/env -S julia --startup-file=no --project=.
 module Microbench
-export Term, inputtype, input, valuetype, value, PiTerm, piterms, pisum
+export computepi², computepi
 using Printf
 using Base.Threads
 
@@ -17,7 +17,7 @@ end
 
 function benchmark(n, e)
     t = @timed for i = 1:n
-        v = computepi(1:e)
+        v = computepi(e)
         @printf("%16.9f\n", v)
     end
     @printf(stdout, "%s Seconds\n", t.time)

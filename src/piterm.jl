@@ -3,9 +3,9 @@ export computepi, computepi², Program
 using Base.Threads
 using Printf
 
-function computepi²(ts)
+function computepi²(e)::Float64
     s = 0.0
-    @fastmath for i = ts
+    @fastmath for i = 1:e
         t = inv(i)
         s += t*t
     end
