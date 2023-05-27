@@ -13,8 +13,7 @@ function main(args)
     n = parse(Int, args[1])
     e = parse(Int, args[2])
     for _ = 1:n
-        p = PiTerms.Program(e)
-        println(p)
+        println(PiTerms.Program(e))
     end
 end
 
