@@ -18,7 +18,7 @@ end
 
 function benchmark(n, e)
     t = @timed for i = 1:n
-        v = pisum(1:e)
+        v = computepi(1:e)
         @printf("%16.9f\n", v)
     end
     @printf(stdout, "%s Seconds\n", t.time)

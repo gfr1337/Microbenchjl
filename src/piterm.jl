@@ -1,20 +1,20 @@
 module PiTerms
-export PiTerm, pisum, pisumsq, Program
+export computepi, computepi², Program
 using Base.Threads
 using Printf
 using SimpleTraits
 
-@fastmath function invsq(i)
+function invsq(i)
     t = 1/i
     t*t
 end
-@fastmath function pisumsq(ts)
+function computepi²(ts)
     s = 0.0
-    for t = ts
+    @simd for t = ts
         s += invsq(t)
     end
     6.0*s
 end
-pisum(ts) = sqrt(pisumsq(ts))
+computepi(ts) = sqrt(computepi²(ts))
 
 end
