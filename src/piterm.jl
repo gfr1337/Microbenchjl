@@ -16,7 +16,11 @@ Terms.value(p::PiTerm) = inv(input(p)*input(p))
 piterms() = piterms(Iterators.countfrom(1))
 piterms(r) = (PiTerm(i) for i = r)
 
-pisumsq(n) = 6.0*mapreduce(value, +, piterms(1:n), init=0.0)
+function pisumsq(n) 
+    6.0*reduce(piterms(1:n), init=0.0) do a, v
+        a + value(v) 
+    end
+end
 
 pisum(n) = pisumsq(n) |> sqrt
 
