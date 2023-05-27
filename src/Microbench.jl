@@ -9,9 +9,7 @@ include("piterm.jl")
 
 using .PiTerms
 
-function main(args)
-    n = parse(Int, args[1])
-    e = parse(Int, args[2])
+function main(n, e)
     for i = 1:n
         benchmark(100, e)
     end
