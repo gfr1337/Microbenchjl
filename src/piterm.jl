@@ -12,7 +12,7 @@ end
 @traitimpl Term{PiTerm}
 Terms.inputtype(::Type{PiTerm}) = Int
 Terms.valuetype(::Type{PiTerm}) = Float64
-Terms.value(p::PiTerm) = input(p)^-2
+Terms.value(p::PiTerm) = input(p) ^ -2
 
 @fastmath function pisumsq(ts)
     s = 0.0
@@ -22,7 +22,7 @@ Terms.value(p::PiTerm) = input(p)^-2
     6.0*s
 end
 
-@fastmath pisum(ts) = pisumsq(n) |> sqrt
+@fastmath pisum(ts) = pisumsq(ts) |> sqrt
 
 struct Program
     input::Int
