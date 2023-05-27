@@ -1,5 +1,5 @@
 module PiTerms
-export PiTerm, piterms, pisumsq, pisum, Program
+export PiTerm, piterms, pisumsq, pisum
 using Printf
 using SimpleTraits
 using ..Terms
