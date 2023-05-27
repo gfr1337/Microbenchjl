@@ -12,15 +12,17 @@ using .PiTerms
 function main(args)
     n = parse(Int, args[1])
     e = parse(Int, args[2])
-    v = @timed benchmark(n, e)
-    @printf(stderr, "%s Seconds\n", v.time)
+    for i = 1:n
+        benchmark(100, e)
+    end
 end
 
 function benchmark(n, e)
-    for i = 1:n
+    t = @timed for i = 1:n
         v = pisum(1:e)
         @printf("%16.9f\n", v)
     end
+    @printf(stdout, "%s Seconds\n", t.time)
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__()
