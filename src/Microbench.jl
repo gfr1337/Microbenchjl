@@ -3,13 +3,12 @@ module Microbench
 export Term, inputtype, input, valuetype, value, PiTerm, piterms, pisum
 using Printf
 using Base.Threads
-using SimpleTraits
 
 include("piterm.jl")
 
 using .PiTerms
 
-function main(n, e)
+function main(n=10, e=30000000)
     println("Julia")
     for i = 1:n
         benchmark(100, e)
@@ -25,7 +24,7 @@ function benchmark(n, e)
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__()
-    main(10, 30000000)
+    main()
 end
 
 end # module Microbench

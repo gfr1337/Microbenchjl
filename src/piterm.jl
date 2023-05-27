@@ -2,7 +2,6 @@ module PiTerms
 export computepi, computepi², Program
 using Base.Threads
 using Printf
-using SimpleTraits
 
 function computepi²(ts)
     s = 0.0
