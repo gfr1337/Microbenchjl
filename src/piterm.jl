@@ -13,13 +13,12 @@ Terms.inputtype(::Type{PiTerm}) = Int
 Terms.valuetype(::Type{PiTerm}) = Float64
 Terms.value(p::PiTerm) = inv(input(p)*input(p))
 
-piterms() = piterms(Iterators.countfrom(1))
-piterms(r) = (PiTerm(i) for i = r)
-
 function pisumsq(n) 
-    6.0*reduce(piterms(1:n), init=0.0) do a, v
-        a + value(v) 
+    s = 0.0
+    @simd for t = 1:n
+        s += value(PiTerm(t))
     end
+    6.0*s
 end
 
 pisum(n) = pisumsq(n) |> sqrt
