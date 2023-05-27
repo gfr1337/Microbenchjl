@@ -26,7 +26,7 @@ function benchmark(n, e)
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__()
-    main(ARGS)
+    main(10, 30000000)
 end
 
 end # module Microbench
