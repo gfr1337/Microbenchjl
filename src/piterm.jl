@@ -14,9 +14,9 @@ Terms.inputtype(::Type{PiTerm}) = Int
 Terms.valuetype(::Type{PiTerm}) = Float64
 Terms.value(p::PiTerm) = input(p) ^ -2
 
-@fastmath function pisumsq(ts)
+function pisumsq(ts)
     s = 0.0
-    for t = ts
+    @simd for t = ts
         s += value(PiTerm(t))
     end
     6.0*s
