@@ -35,7 +35,7 @@ Terms.value(p::Program) = input(p) |> pisum
 
 function Base.print(out::IO, p::Program) 
     v = value(p)
-    @printf(out, "%11.8f\t%s", v, v ≈ π)
+    @printf(out, "%11.8f", v)
 end
 
 end
