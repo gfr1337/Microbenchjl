@@ -33,9 +33,4 @@ Terms.inputtype(::Type{Program}) = Int
 Terms.valuetype(::Type{Program}) = Float64
 Terms.value(p::Program) = 1:input(p) |> pisum
 
-function Base.print(out::IO, p::Program) 
-    v = value(p)
-    @printf(out, "%11.8f", v)
-end
-
 end
