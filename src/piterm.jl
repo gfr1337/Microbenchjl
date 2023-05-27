@@ -1,16 +1,16 @@
 module PiTerms
-export PiTerm, piterms, pisumsq, pisum
+export PiTerm, pisumsq, pisum
 using Base.Threads
 using Printf
 using SimpleTraits
 using ..Terms
 
 struct PiTerm
-    input::Int
+    input::Float64
 end
 
 @traitimpl Term{PiTerm}
-Terms.inputtype(::Type{PiTerm}) = Int
+Terms.inputtype(::Type{PiTerm}) = Float64
 Terms.valuetype(::Type{PiTerm}) = Float64
 Terms.value(p::PiTerm) = input(p)^-2
 
