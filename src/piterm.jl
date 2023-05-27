@@ -6,15 +6,15 @@ using SimpleTraits
 using ..Terms
 
 struct PiTerm
-    input::Float64
+    input::Int
 end
 
 @traitimpl Term{PiTerm}
-Terms.inputtype(::Type{PiTerm}) = Float64
+Terms.inputtype(::Type{PiTerm}) = Int
 Terms.valuetype(::Type{PiTerm}) = Float64
 Terms.value(p::PiTerm) = input(p)^-2
 
-@fastmath function pisumsq(n) 
+@fastmath function pisumsq(n::Int)
     s = 0.0
     for t = 1:n
         s += value(PiTerm(t))
