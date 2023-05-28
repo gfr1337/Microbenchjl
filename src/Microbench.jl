@@ -1,10 +1,11 @@
 #!/usr/bin/env -S julia --startup-file=no --project=.
 module Microbench
-export computepi2, computepi, runbenchmark, benchmark
+export runbenchmark
 using Printf
 using Base.Threads
 
 include("piterm.jl")
+using .PiTerm: computepi
 
 function runbenchmark(n::Int, m::Int, e::Int)::Nothing
     println("Julia")
