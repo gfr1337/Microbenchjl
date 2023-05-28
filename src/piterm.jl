@@ -1,6 +1,5 @@
 module PiTerms
 export computepi, computepi²
-using Base.Threads
 using Printf
 
 @fastmath function computepi²(e::Integer)::Float64

@@ -8,7 +8,7 @@ include("piterm.jl")
 
 using .PiTerms
 
-function main(n::Int=10, e::Int=30000000)::Nothing
+function main(n::Int=10, e::Int=30_000_000)::Nothing
     println("Julia")
     for i = 1:n
         benchmark(100, e)
@@ -23,9 +23,8 @@ function benchmark(n::Int, e::Int)::Nothing
     @printf(stdout, "%s Seconds\n", t.time)
 end
 
-
-for i = 0:2
-    precompile(main, ntuple(_ -> Int, i))
+if abspath(PROGRAM_FILE) == @__FILE__()
+    main()
 end
 
 end # module Microbench
