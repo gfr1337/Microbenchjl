@@ -10,7 +10,7 @@ using .PiTerm: computepi
 function runbenchmark(n::Int, m::Int, e::Int)::Nothing
     println("Julia")
     for i = 1:n
-        benchmark(100, e)
+        @inline benchmark(100, e)
     end
 end
 
