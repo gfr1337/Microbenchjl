@@ -6,14 +6,16 @@ using Base.Threads
 
 include("piterm.jl")
 
-function runbenchmark(n::Int=10, e::Int=30_000_000)::Nothing
+function runbenchmark()::Nothing
+    n = 10
+    e = 30_000_000
     println("Julia")
     for i = 1:n
         benchmark(100, e)
     end
 end
 
-function benchmark(n::Int, e::Int)::Nothing
+function benchmark(n, e)::Nothing
     t = @timed for i = 1:n
         v = computepi(e)
         @printf("%16.9f\n", v)
