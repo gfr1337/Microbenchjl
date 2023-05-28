@@ -6,9 +6,7 @@ using Base.Threads
 
 include("piterm.jl")
 
-function runbenchmark()::Nothing
-    n = 10
-    e = 30_000_000
+function runbenchmark(n::Int, m::Int, e::Int)::Nothing
     println("Julia")
     for i = 1:n
         benchmark(100, e)
@@ -24,10 +22,10 @@ function benchmark(n, e)::Nothing
 end
 
 # precompile(benchmark, (Int, Int))
-precompile(runbenchmark, ())
+precompile(runbenchmark, (Int, Int, Int))
 
 if abspath(PROGRAM_FILE) == @__FILE__()
-    runbenchmark()
+    runbenchmark(10, 100, 30_000_000)
 end
 
 end # module Microbench
