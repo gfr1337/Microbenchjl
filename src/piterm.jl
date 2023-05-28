@@ -12,4 +12,4 @@ end
     6.0*s
 end
 
-@fastmath computepi(ts::Union{Integer, AbstractVector{<:Integer}})::Float64 = sqrt(computepi²(ts))
+@fastmath computepi(ts)::Float64 = sqrt(computepi²(ts))
