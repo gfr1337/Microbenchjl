@@ -23,6 +23,10 @@ function benchmark(n, e)::Nothing
     @printf(stdout, "%s Seconds\n", t.time)
 end
 
+precompile(benchmark, (Int, Int))
+precompile(main, ())
+precompile(main, (Int, Int))
+
 if abspath(PROGRAM_FILE) == @__FILE__()
     main()
 end
