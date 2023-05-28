@@ -3,9 +3,9 @@ export computepi, computepi²
 using Base.Threads
 using Printf
 
-function computepi²(e::Integer)::Float64
+@fastmath function computepi²(e::Integer)::Float64
     s = 0.0
-    @fastmath for i = 1:e
+    for i = 1:e
         s += i ^ -2
     end
     6.0*s
