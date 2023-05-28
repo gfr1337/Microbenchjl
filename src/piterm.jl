@@ -1,6 +1,8 @@
 module PiTerm
 export computepi, computepi2, computepi²
 
+const Fractional = Union{AbstractFloat, Rational}
+
 begin
     local _pow
     global pow
@@ -14,7 +16,7 @@ begin
     end
 
     @fastmath @inline pow(x::Integer, n::Integer)::Float64 = @inline pow(Float64(x), n)
-    @fastmath @inline function pow(x::F, n::Integer)::F where F <: Union{AbstractFloat, Rational}
+    @fastmath @inline function pow(x::F, n::Integer)::F where F <: Fractional
         if n < 0
             @inline _pow(inv(x), -n)
         else
