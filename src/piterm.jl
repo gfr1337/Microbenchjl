@@ -10,6 +10,7 @@ using Printf
     end
     6.0*s
 end
+
 @fastmath computepi(ts)::Float64 = sqrt(computepi²(ts))
 
 end
