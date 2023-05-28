@@ -1,6 +1,6 @@
 using Printf
 
-@fastmath function computepi2(n::AbstractRange{Int})::Float64
+@fastmath function computepi2(n::AbstractRange{<:Integer})::Float64
     s = 0.0
     for i = n
         t = inv(i)
@@ -9,7 +9,7 @@ using Printf
     6.0*s
 end
 
-computepi2(n::Int)::Float64 = computepi2(1:n)
+computepi2(n::Integer)::Float64 = computepi2(1:n)
 
 const computepi² = computepi2
 

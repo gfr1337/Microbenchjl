@@ -24,8 +24,10 @@ end
 # precompile(benchmark, (Int, Int))
 precompile(runbenchmark, (Int, Int, Int))
 
-if abspath(PROGRAM_FILE) == @__FILE__()
-    runbenchmark(10, 100, 30_000_000)
+function __init__()
+    if abspath(PROGRAM_FILE) == @__FILE__()
+        runbenchmark(10, 100, 30_000_000)
+    end
 end
 
 end # module Microbench
