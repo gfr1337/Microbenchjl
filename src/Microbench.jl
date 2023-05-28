@@ -28,8 +28,4 @@ for i = 0:2
     precompile(main, ntuple(_ -> Int, i))
 end
 
-if abspath(PROGRAM_FILE) == @__FILE__()
-    main()
-end
-
 end # module Microbench
