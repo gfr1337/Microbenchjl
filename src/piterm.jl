@@ -12,7 +12,7 @@ using Printf
 end
 
 @fastmath computepi(ts)::Float64 = sqrt(computepi²(ts))
-precompile(computepi², (Int,))
-precompile(computepi, (Int,))
+# precompile(computepi², (Int,))
+# precompile(computepi, (Int,))
 
 end

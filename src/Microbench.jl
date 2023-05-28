@@ -8,14 +8,14 @@ include("piterm.jl")
 
 using .PiTerms
 
-function main(n=10, e=30000000)::Nothing
+function main(n::Int=10, e::Int=30000000)::Nothing
     println("Julia")
     for i = 1:n
         benchmark(100, e)
     end
 end
 
-function benchmark(n, e)::Nothing
+function benchmark(n::Int, e::Int)::Nothing
     t = @timed for i = 1:n
         v = computepi(e)
         @printf("%16.9f\n", v)
@@ -23,9 +23,10 @@ function benchmark(n, e)::Nothing
     @printf(stdout, "%s Seconds\n", t.time)
 end
 
-precompile(benchmark, (Int, Int))
-precompile(main, ())
-precompile(main, (Int, Int))
+
+for i = 0:2
+    precompile(main, ntuple(_ -> Int, i))
+end
 
 if abspath(PROGRAM_FILE) == @__FILE__()
     main()
