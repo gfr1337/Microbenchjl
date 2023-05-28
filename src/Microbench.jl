@@ -1,6 +1,6 @@
 #!/usr/bin/env -S julia --startup-file=no --project=.
 module Microbench
-export computepi², computepi, runbenchmark, benchmark
+export computepi2, computepi, runbenchmark, benchmark
 using Printf
 using Base.Threads
 
