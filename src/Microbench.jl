@@ -6,8 +6,6 @@ using Base.Threads
 
 include("piterm.jl")
 
-using .PiTerms
-
 function main(n::Int=10, e::Int=30_000_000)::Nothing
     println("Julia")
     for i = 1:n

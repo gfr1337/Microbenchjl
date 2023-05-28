@@ -1,4 +1,3 @@
-module PiTerms
 export computepi, computepi²
 using Printf
 
@@ -19,5 +18,3 @@ precompile(computepi², (Int,))
 precompile(computepi², (UnitRange{Int},))
 precompile(computepi, (UnitRange{Int},))
 precompile(computepi, (Int,))
-
-end
