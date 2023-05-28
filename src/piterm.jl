@@ -1,4 +1,3 @@
-export computepi, computepi²
 using Printf
 
 @fastmath function computepi²(n::Integer)::Float64
