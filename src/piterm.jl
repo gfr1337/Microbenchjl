@@ -15,4 +15,4 @@ const computepi² = computepi2
 
 @fastmath computepi(ts)::Float64 = sqrt(computepi2(ts))
 
-precompile(computepi², (Int,))
+precompile(computepi2, (Int,))
