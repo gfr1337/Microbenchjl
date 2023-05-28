@@ -17,11 +17,12 @@ end
 
 function benchmark(n::Int, e::Int)::Nothing
     t = @timed for i = 1:n
-        v = computepi(e)
+        v = computepi(1:e)
         @printf("%16.9f\n", v)
     end
     @printf(stdout, "%s Seconds\n", t.time)
 end
+precompile(benchmark, (Int, Int))
 
 if abspath(PROGRAM_FILE) == @__FILE__()
     main()
