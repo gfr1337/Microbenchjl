@@ -10,7 +10,7 @@ using .PiTerm
 function runbenchmark(n::Int, m::Int, e::Int)::Nothing
     println("Julia")
     for i = 1:n
-        benchmark(100, e)
+        benchmark(m, e)
     end
 end
 
