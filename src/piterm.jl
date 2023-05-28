@@ -2,10 +2,10 @@ module PiTerm
 export computepi, computepi2, computepi²
 
 begin
-    local _powx
+    local _pow
     global pow
 
-    @inline @fastmath function _powx(x::N, n::Integer)::N where N <: Real
+    @inline @fastmath function _pow(x::N, n::Integer)::N where N <: Real
         acc = one(x)
         @simd for _ = 1:n
             acc *= x
@@ -16,9 +16,9 @@ begin
     @fastmath @inline pow(x::Integer, n::Integer)::Float64 = @inline pow(Float64(x), n)
     @fastmath @inline function pow(x::F, n::Integer)::F where F <: Union{AbstractFloat, Rational}
         if n < 0
-            @inline _powx(inv(x), -n)
+            @inline _pow(inv(x), -n)
         else
-            @inline _powx(x, n)
+            @inline _pow(x, n)
         end
     end
 end
