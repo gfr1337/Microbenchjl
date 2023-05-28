@@ -13,7 +13,10 @@ end
 end
 
 @fastmath computepi(ts::Union{Integer, AbstractVector{<:Integer}})::Float64 = sqrt(computepi²(ts))
+
+#=
 precompile(computepi², (Int,))
 precompile(computepi², (UnitRange{Int},))
 precompile(computepi, (UnitRange{Int},))
 precompile(computepi, (Int,))
+=#

@@ -21,7 +21,7 @@ function benchmark(n::Int, e::Int)::Nothing
     @printf(stdout, "%s Seconds\n", t.time)
 end
 
-precompile(benchmark, (Int, Int))
+# precompile(benchmark, (Int, Int))
 precompile(main, ())
 
 if abspath(PROGRAM_FILE) == @__FILE__()
